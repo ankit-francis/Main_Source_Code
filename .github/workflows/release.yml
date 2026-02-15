@@ -1,0 +1,16 @@
+name: Release Trigger
+on:
+  release:
+    types: [published]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Repo Deployment_Repo workflow
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.Deployment_Repo_TOKEN }}
+          repository: ankit-francis/Deployment_Repo
+          event-type: update-dev-tag
+          client-payload: '{"tag": "${{ github.ref_name }}"}'
