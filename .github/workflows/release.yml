@@ -1,8 +1,9 @@
 name: Release Trigger
 
 on:
-  release:
-    types: [created,published]
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   notify:
