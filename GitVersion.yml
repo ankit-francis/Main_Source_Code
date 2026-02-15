@@ -1,9 +1,7 @@
+next-version: 0.0.0
 mode: ContinuousDelivery
 branches:
   main:
     regex: ^main$
     increment: patch
-    prevent-increment-of-merged-branch-version: true
-    track-merge-target: false
-    is-source-branch: true
     is-mainline: true
