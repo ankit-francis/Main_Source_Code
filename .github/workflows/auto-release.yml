@@ -34,4 +34,4 @@ jobs:
           body: |
             Automated release created after merge to main.
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTION_RUN_TOKEN: ${{ secrets.ACTION_RUN_TOKEN }}
