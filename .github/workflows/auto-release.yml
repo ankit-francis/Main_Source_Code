@@ -33,5 +33,7 @@ jobs:
           name: Release v${{ steps.gitversion.outputs.semver }}
           body: |
             Automated release created after merge to main.
+          draft: false
+          prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
