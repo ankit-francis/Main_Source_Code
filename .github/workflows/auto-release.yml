@@ -26,13 +26,6 @@ jobs:
         id: gitversion
         uses: gittools/actions/gitversion/execute@v0.10.2
         
-      - name: Create and push tag
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git tag v${{ steps.gitversion.outputs.semver }}
-          git push origin v${{ steps.gitversion.outputs.semver }}
-
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
@@ -44,3 +37,10 @@ jobs:
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Trigger Release Workflow
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          event-type: release-created
+          client-payload: '{"tag": "v${{ steps.gitversion.outputs.semver }}"}'
