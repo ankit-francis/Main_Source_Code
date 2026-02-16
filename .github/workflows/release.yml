@@ -21,6 +21,15 @@ jobs:
           fi
           echo "tag=${TAG}" >> $GITHUB_OUTPUT
           
+      - name: Debug: check ACTION_RUN_TOKEN secret presence
+        run: |
+          if [ -z "${{ secrets.ACTION_RUN_TOKEN }}" ]; then
+            echo "SECRET_MISSING"
+            exit 1
+          else
+            echo "SECRET_PRESENT"
+          fi
+          
       - name: Trigger Repo B workflow
         uses: peter-evans/repository-dispatch@v3
         with:
