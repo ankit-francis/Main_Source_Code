@@ -30,7 +30,7 @@ jobs:
             echo "SECRET_PRESENT"
           fi
           
-      - name: Debug: test repository-dispatch via API
+      - name:  Test repository-dispatch via API
         env:
           ACTION_RUN_TOKEN: ${{ secrets.ACTION_RUN_TOKEN }}
           TAG: ${{ steps.extract_tag.outputs.tag }}
