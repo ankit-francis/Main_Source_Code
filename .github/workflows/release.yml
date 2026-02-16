@@ -3,7 +3,7 @@ name: Release Trigger
 on:
   push:
     tags:
-      - 'Release v*'
+      - 'v*'
 
 jobs:
   notify:
@@ -15,4 +15,5 @@ jobs:
           token: ${{ secrets.ACTION_RUN_TOKEN }}   # PAT stored in Repo A secrets
           repository: ankit-francis/Deployment_Repo
           event-type: update-dev-tag
-          client-payload: '{"tag": "${{ github.event.release.tag_name }}"}'
+          client-payload: >-
+                          {"tag": "${{ github.event.release.tag_name || github.ref_name }}"}
