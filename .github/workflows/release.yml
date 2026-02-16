@@ -3,7 +3,7 @@ name: Release Trigger
 on:
   push:
     tags:
-      - 'v*'
+      - 'Release v*'
 
 jobs:
   notify:
